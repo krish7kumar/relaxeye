@@ -6,10 +6,12 @@ import * as serviceWorker from './serviceWorker';
 import {HashRouter} from 'react-router-dom';
 
 ReactDOM.render(
+  <React.StrictMode>
     <HashRouter basename='/'>
       <App />
-    </HashRouter>,
-  document.getElementById('root')
+    </HashRouter>
+  document.getElementById('root');
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
