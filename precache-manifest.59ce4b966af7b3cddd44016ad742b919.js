@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4564064571d4013094559e31f6875c08",
+    "revision": "75adbc16936c2feca19665e3193d7d0d",
     "url": "/krish7kumar/relaxeye/index.html"
   },
   {
-    "revision": "9444ee74b1a6e3bb4adc",
+    "revision": "2139d93b37c44a97b3c4",
     "url": "/krish7kumar/relaxeye/static/css/main.568b99e2.chunk.css"
   },
   {
-    "revision": "bf1153b34f2bf218f2b3",
-    "url": "/krish7kumar/relaxeye/static/js/2.5ad3ba00.chunk.js"
+    "revision": "22345d3e5590798a70e0",
+    "url": "/krish7kumar/relaxeye/static/js/2.470b1973.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/krish7kumar/relaxeye/static/js/2.5ad3ba00.chunk.js.LICENSE.txt"
+    "url": "/krish7kumar/relaxeye/static/js/2.470b1973.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9444ee74b1a6e3bb4adc",
-    "url": "/krish7kumar/relaxeye/static/js/main.c50a9933.chunk.js"
+    "revision": "2139d93b37c44a97b3c4",
+    "url": "/krish7kumar/relaxeye/static/js/main.1e473dbc.chunk.js"
   },
   {
     "revision": "c01f0bd7fd708aab7279",
