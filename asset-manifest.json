@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/krish7kumar/relaxeye/static/css/main.568b99e2.chunk.css",
-    "main.js": "/krish7kumar/relaxeye/static/js/main.517778a3.chunk.js",
-    "main.js.map": "/krish7kumar/relaxeye/static/js/main.517778a3.chunk.js.map",
+    "main.js": "/krish7kumar/relaxeye/static/js/main.cb39e6dc.chunk.js",
+    "main.js.map": "/krish7kumar/relaxeye/static/js/main.cb39e6dc.chunk.js.map",
     "runtime-main.js": "/krish7kumar/relaxeye/static/js/runtime-main.275adef1.js",
     "runtime-main.js.map": "/krish7kumar/relaxeye/static/js/runtime-main.275adef1.js.map",
     "static/js/2.5ad3ba00.chunk.js": "/krish7kumar/relaxeye/static/js/2.5ad3ba00.chunk.js",
     "static/js/2.5ad3ba00.chunk.js.map": "/krish7kumar/relaxeye/static/js/2.5ad3ba00.chunk.js.map",
     "index.html": "/krish7kumar/relaxeye/index.html",
-    "precache-manifest.93e0bccd8ef49f5300b18b0390ad60f2.js": "/krish7kumar/relaxeye/precache-manifest.93e0bccd8ef49f5300b18b0390ad60f2.js",
+    "precache-manifest.57f4a0fc71e65feff552749c21010bbd.js": "/krish7kumar/relaxeye/precache-manifest.57f4a0fc71e65feff552749c21010bbd.js",
     "service-worker.js": "/krish7kumar/relaxeye/service-worker.js",
     "static/css/main.568b99e2.chunk.css.map": "/krish7kumar/relaxeye/static/css/main.568b99e2.chunk.css.map",
     "static/js/2.5ad3ba00.chunk.js.LICENSE.txt": "/krish7kumar/relaxeye/static/js/2.5ad3ba00.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.275adef1.js",
     "static/js/2.5ad3ba00.chunk.js",
     "static/css/main.568b99e2.chunk.css",
-    "static/js/main.517778a3.chunk.js"
+    "static/js/main.cb39e6dc.chunk.js"
   ]
 }
