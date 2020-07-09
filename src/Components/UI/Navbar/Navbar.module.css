@@ -1,0 +1,46 @@
+.Navbar {
+   height: 50px;
+   background-color: black;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.Navbar ul{
+   list-style: none;
+}
+
+.Navbar a{
+   cursor: pointer;
+   text-decoration: none;
+   color: white;
+   text-transform: uppercase;
+   font-weight: bold;
+}
+
+.Navbar li{
+   display: inline-block;
+   text-decoration: none;
+   color: white;
+   margin: auto 10px;
+   box-sizing: border-box;
+}
+
+.Navbar li a:hover{
+   background-color: white;
+   color: black;
+}
+
+.LinkActive{
+   border-bottom: 2px solid whitesmoke;
+   background-color: rgba(68, 68, 68, 0.534);
+   text-decoration: none;
+}
+
+.Link{
+   text-decoration: none;
+   color: white;
+   font-weight: bold;
+   padding: 11px 20px;
+}

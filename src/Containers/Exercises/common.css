@@ -1,0 +1,52 @@
+.Container{
+   text-align: center;
+}
+
+.Instruction{
+   margin:10px 5px;
+   font-weight: bold;
+   text-transform: uppercase;
+   background-color: rgb(168, 168, 168);
+   display: inline-block;
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.Container button{
+   padding: 7px 15px;
+   border: none;
+   background-color: transparent;
+   border: 1px solid black;
+   border-radius: 10px;
+   margin: auto 10px;
+   outline: none;
+   text-decoration: none;
+   font: inherit;
+}
+
+.Container button:hover{
+   background-color: black;
+   color: white;
+   cursor: pointer;
+}
+
+.Ol{
+   text-align: left;
+}
+
+.Exercise {
+   margin: 30px auto;
+   padding: 10px;
+   height: auto;
+   width: 80%;
+   border: 1px solid black;
+   border-radius: 5px;
+   box-shadow: 0 1px 2px #eee;
+   box-sizing: border-box;
+}
+
+@media (min-width:600px){
+   .Exercise{
+      width:600px;
+   }
+}

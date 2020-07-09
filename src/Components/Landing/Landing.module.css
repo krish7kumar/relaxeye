@@ -1,0 +1,50 @@
+.Container{
+   padding-top: 100px;
+   text-align: center;
+}
+
+
+.Landing{
+   margin: auto;
+   width: 80%;
+   border: 1px solid black;
+   box-shadow: 0 2px 3px rgb(82, 79, 79);
+   padding: 30px;
+   box-sizing: border-box;
+}
+
+.Heading h1{
+   margin:0;
+}
+
+.Heading p{
+   margin: 0 auto;
+   font-size: x-small;
+}
+
+.Landing button{
+   padding: 7px 15px;
+   border: none;
+   background-color: transparent;
+   border: 1px solid black;
+   border-radius: 5px;
+   outline: none;
+   text-decoration: none;
+   font: inherit;
+}
+
+.Landing button:hover{
+   background-color: black;
+   color: white;
+   cursor: pointer;
+}
+
+.Landing p em{
+   font-size: x-small;
+}
+
+@media (min-width:510px){
+   .Landing{
+      width:600px;
+   }
+}
