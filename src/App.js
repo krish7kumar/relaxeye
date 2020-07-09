@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <HashRouter basename='/relax'>
+      <HashRouter basename='/relaxeye'>
       <Switch>
         <Route path='/exercises' component={Exercises} />
         <Route path='/' exact component={Landing} />
