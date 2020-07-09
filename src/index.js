@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {HashRouter} from 'react-router-dom';
 
 ReactDOM.render(
-    <HashRouter>
+    <HashRouter basename='/relaxeye'>
       <App />
     </HashRouter>,
   document.getElementById('root')
