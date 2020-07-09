@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "81f24cc2a75b34a1afc0b3e454ebb85b",
+    "revision": "d796b48a01c8fe816e3a39cf5925ed14",
     "url": "/relaxeye/index.html"
   },
   {
-    "revision": "3dad294d565d697404e7",
+    "revision": "dbde18bc8c47e1c1570b",
     "url": "/relaxeye/static/css/main.568b99e2.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/relaxeye/static/js/2.470b1973.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3dad294d565d697404e7",
-    "url": "/relaxeye/static/js/main.66567596.chunk.js"
+    "revision": "dbde18bc8c47e1c1570b",
+    "url": "/relaxeye/static/js/main.89c4fee0.chunk.js"
   },
   {
     "revision": "f2031ae5d755d10cb538",

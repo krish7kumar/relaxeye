@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/relaxeye/precache-manifest.bcd7df7998189891d67bd241d867b09d.js"
+  "/relaxeye/precache-manifest.beabcadb18e8bc8e9c3ef02c167e00ba.js"
 );
 
 self.addEventListener('message', (event) => {
