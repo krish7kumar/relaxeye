@@ -14,7 +14,7 @@ import Timer from '../../Timer/Timer';
 
    componentDidMount(){
       this._isMounted = true;
-         setTimeout(()=>{
+      this.timeOut = setTimeout(()=>{
             if(this._isMounted)
                this.setState({text:'Move your eyes up and down for 5 breaths'})
             setTimeout(()=>{
@@ -41,7 +41,12 @@ import Timer from '../../Timer/Timer';
    }
 
    nextExercise =()=>{
-      this.props.history.push('/exercises/2');
+      if(this.state.next){
+         this.props.history.push('/exercises/2');
+      }
+      else{
+         this.setState({next:true});
+      }
    }
 
    fullInstructions = ()=>{
@@ -70,11 +75,9 @@ import Timer from '../../Timer/Timer';
                <p className='Instruction'>{this.state.text}</p>
             </div>
          {this.state.start?<Timer minutes='0' seconds='45'/>:null}
-         {this.state.start?
-            <button onClick={this.fullInstructions}>
+            <button disabled={!this.state.next} onClick={this.fullInstructions} >
                Full Instructions
             </button>
-         :null}
          <button onClick={this.nextExercise}>{buttonName}</button>
          {this.state.full ? fullInstructions : null}
          </div>

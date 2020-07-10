@@ -1,14 +1,20 @@
 .Navbar {
    height: 50px;
    background-color: black;
-   width: 100%;
+   width:100%;
    display: flex;
    align-items: center;
-   justify-content: space-around;
+   justify-content: center;
 }
 
+
 .Navbar ul{
+   float: right;
    list-style: none;
+   display: flex;
+   justify-content: space-around;
+   width: auto;
+   padding-left: 10px;
 }
 
 .Navbar a{
@@ -20,10 +26,9 @@
 }
 
 .Navbar li{
-   display: inline-block;
    text-decoration: none;
    color: white;
-   margin: auto 10px;
+   margin: auto 6px;
    box-sizing: border-box;
 }
 
@@ -43,4 +48,10 @@
    color: white;
    font-weight: bold;
    padding: 11px 20px;
+}
+
+@media (min-width:400){
+   .Navbar{
+      width: 100%;
+   }
 }

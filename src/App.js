@@ -8,10 +8,10 @@ function App() {
   return (
     <div className="App">
       <HashRouter>
-      <Switch>
-        <Route path='/exercises' component={Exercises} />
-        <Route path='/' exact component={Landing} />
-      </Switch>
+        <Switch>
+          <Route path='/exercises' component={Exercises} />
+          <Route path='/' exact component={Landing} />
+        </Switch>
       </HashRouter>
     </div>
   );

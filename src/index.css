@@ -1,11 +1,6 @@
 body {
   margin: 0;
   font-family: 'Roboto Mono', monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 780px;
-  background-color: #2d3436;
-  background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 74%);
 }
 
 code {

@@ -29,7 +29,12 @@ import Timer from '../../Timer/Timer';
    }
 
    nextExercise =()=>{
-      this.props.history.push('/exercises/3');
+      if(this.state.next){
+         this.props.history.push('/exercises/3');
+      }
+      else{
+         this.setState({next:true});
+      }   
    }
    prevExercise = ()=>{
       this.props.history.goBack();
@@ -59,12 +64,13 @@ import Timer from '../../Timer/Timer';
             </div>
             {this.state.start?<Timer minutes='0' seconds='30'/>:null}
             <button onClick={this.prevExercise}>BACK</button>
-            {this.state.start?
-            <button onClick={this.fullInstructions}>
+            <button onClick={this.nextExercise}>{buttonName}</button>
+            <button disabled={!this.state.next} onClick={this.fullInstructions} 
+            style={{
+               marginTop :'10px'
+            }}>
                Full Instructions
             </button>
-            :null}
-            <button onClick={this.nextExercise}>{buttonName}</button>
             {this.state.full ? fullInstructions : null}
          </div>
       );

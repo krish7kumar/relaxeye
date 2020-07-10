@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import classes from './Exercise4.module.css';
 import '../common.css';
 import {withRouter} from 'react-router-dom';
 import Timer from '../../Timer/Timer';
@@ -8,6 +7,7 @@ import Timer from '../../Timer/Timer';
    _isMounted = false;
    state = {
       text : '',
+      next : false,
       start : false,
       full : false
    }
@@ -25,7 +25,7 @@ import Timer from '../../Timer/Timer';
                      this.setState({text:'Feel the warmth of the hands and darkness. Notice if you see any flashes of light. Let your breath be natural and smooth. When lights and the colors fade to black open your eyes into the darkness'})
                   setTimeout(()=>{
                      if(this._isMounted)
-                        this.setState({text:'START!', start:true}) 
+                        this.setState({text:'START!', start:true, next:true}) 
                   },7000)
                },7000)
             },5000)
@@ -41,7 +41,11 @@ import Timer from '../../Timer/Timer';
    }
 
    finishedHandler =()=>{
-      this.props.history.replace('/')
+      if(this.state.next){
+         this.props.history.replace('/')
+      }else{
+         this.setState({next:true});
+      }
    }
 
    fullInstructions = ()=>{
@@ -51,6 +55,7 @@ import Timer from '../../Timer/Timer';
    }
 
     render(){
+      const buttonName = this.state.next ? 'FINISH' : 'SKIP'; 
       const fullInstructions = (<div className='Exercise'>
       <h3>Full Instruction</h3>
       <ol className='Ol'>
@@ -62,20 +67,21 @@ import Timer from '../../Timer/Timer';
       ); 
       return (
          <div className='Container'>
-            <div className={classes.Exercise4}>
+            <div className='Exercise'>
                <h1>Rub Rub</h1>
                <p>For the last time<br/>In a stable relaxed position</p>
                <p className='Instruction'>{this.state.text}</p>
             </div>
-            {this.state.start?<Timer minutes='1' seconds='10'/>:null}
-            <button onClick={this.restartExercise}>RESTART</button>
-            {this.state.start?
-            <button onClick={this.fullInstructions}>
-               Full Instructions
-            </button>
-            :null}
-            <button onClick={this.finishedHandler}>FINISH</button>
-            {this.state.full ? fullInstructions : null}
+               {this.state.start?<Timer minutes='1' seconds='10'/>:null}
+               <button onClick={this.restartExercise}>RESTART</button>
+               <button onClick={this.finishedHandler}>{buttonName}</button>
+               <button disabled={!this.state.next}  onClick={this.fullInstructions} 
+               style={{
+                  marginTop :'10px'
+               }}>
+                  Full Instructions
+               </button>
+               {this.state.full ? fullInstructions : null}
          </div>
       );
     }
