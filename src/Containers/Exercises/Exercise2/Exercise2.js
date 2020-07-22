@@ -1,82 +1,104 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../common.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Timer from '../../Timer/Timer';
+import FullInstructions from '../../../Components/FullInstructions';
 
- class Exercise2 extends Component{
-   _isMounted = false;
-   state = {
-      text : '',
-      next : false,
-      start : false,
-      full : false
-   }
+const Exercise2 = React.memo((props) => {
+	const [ text, setText ] = useState('');
+	const [ next, setNext ] = useState(false);
+	const [ start, setStart ] = useState(false);
+	const [ full, setFull ] = useState(false);
+	const [ timer, setTimer ] = useState(false);
+	const [ ecount, setEcount ] = useState(0);
 
-   componentDidMount(){
-      this._isMounted = true;
-         setTimeout(()=>{
-            if(this._isMounted)
-               this.setState({text:"Move your eyes in the shape of figure '8'. Repeat this for 5 breaths"})
-               setTimeout(()=>{
-                  if(this._isMounted)
-                     this.setState({text:'START!',next:true, start:true}) 
-               },4000)
-         }, 1000)
-      }
+	const timeOut = React.useRef(null);
+	useEffect(() => {
+		timeOut.current = setTimeout(() => {
+			setText("Move your eyes in the shape of figure '8'. Repeat this for 5 breaths");
+			setEcount((prevState) => prevState + 1);
+			timeOut.current = setTimeout(() => {
+				setText('START!');
+				setNext(true);
+				setStart(true);
+				setTimer(true);
+			}, 4000);
+		}, 1000);
+		return () => {
+			clearTimeout(timeOut.current);
+		};
+	}, []);
 
-   componentWillUnmount(){
-      this._isMounted = false;
-   }
+	const nextExercise = () => {
+		if (next) {
+			props.history.push('/exercises/3');
+		} else {
+			clearTimeout(timeOut.current);
+			setText('START!');
+			setNext(true);
+			setStart(true);
+		}
+	};
 
-   nextExercise =()=>{
-      if(this.state.next){
-         this.props.history.push('/exercises/3');
-      }
-      else{
-         this.setState({next:true});
-      }   
-   }
-   prevExercise = ()=>{
-      this.props.history.goBack();
-   }
+	const prevExercise = () => {
+		props.history.goBack();
+	};
 
-   fullInstructions = ()=>{
-      this.setState({
-         full : true
-      })
-   }
-    render(){
-      const buttonName = this.state.next ? 'NEXT' : 'SKIP';
-      const fullInstructions = (<div className='Exercise'>
-         <h3>Full Instruction</h3>
-         <ol className='Ol'>
-            <li>Move your eyes in the shape of figure '8'.</li>
-            <li>Repeat this for 5 breaths</li>
-         </ol>
-         </div>
-      );
-      return (
-         <div className='Container'>
-            <div className='Exercise'>
-               <h1>Figure 8</h1>
-               <p>In a stable relaxed position</p>
-               <p className='Instruction'>{this.state.text}</p>
-            </div>
-            {this.state.start?<Timer minutes='0' seconds='30'/>:null}
-            <button onClick={this.prevExercise}>BACK</button>
-            <button onClick={this.nextExercise}>{buttonName}</button>
-            <button disabled={!this.state.next} onClick={this.fullInstructions} 
-            style={{
-               marginTop :'10px'
-            }}>
-               Full Instructions
-            </button>
-            {this.state.full ? fullInstructions : null}
-         </div>
-      );
-    }
-}
+	const fullInstructions = () => {
+		setFull((prevState) => !prevState);
+	};
 
-// In a stable relaxed postion,  move your eyes up and down , left and right, diagnally right and diagnally each for 5 breaths
+	const timerOn = () => {
+		setTimer((prevState) => !prevState);
+	};
+
+	const buttonName = next ? 'NEXT' : 'SKIP';
+
+	return (
+		<div className="Container">
+			<div className="Exercise">
+				<h1>Figure 8</h1>
+				<p>In a stable relaxed position</p>
+				{!next ? (
+					<p>
+						<span>{ecount}</span>/1
+					</p>
+				) : (
+					<p>1/1</p>
+				)}
+				<p className="Instruction">{text}</p>
+			</div>
+			{timer ? (
+				<Timer minutes="0" seconds="30" />
+			) : (
+				<div
+					style={{
+						marginBottom: '16px',
+						opacity: 0.5
+					}}
+				>
+					Time Remaining: 0:30
+				</div>
+			)}
+			<button disabled={!full && !start} onClick={timerOn}>
+				{timer ? 'Reset Timer' : 'Start Timer'}
+			</button>
+			<button
+				disabled={!next}
+				onClick={fullInstructions}
+				style={{
+					margin: '10px auto'
+				}}
+			>
+				Full Instructions
+			</button>
+			<br />
+			<button onClick={prevExercise}>BACK</button>
+			<button onClick={nextExercise}>{buttonName}</button>
+
+			{full ? <FullInstructions number="2" /> : null}
+		</div>
+	);
+});
 
 export default withRouter(Exercise2);

@@ -1,57 +1,56 @@
 .Navbar {
-   height: 50px;
-   background-color: black;
-   width:100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+	height: 50px;
+	background-color: black;
+	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-
-.Navbar ul{
-   float: right;
-   list-style: none;
-   display: flex;
-   justify-content: space-around;
-   width: auto;
-   padding-left: 10px;
+.Navbar ul {
+	float: right;
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
 }
 
-.Navbar a{
-   cursor: pointer;
-   text-decoration: none;
-   color: white;
-   text-transform: uppercase;
-   font-weight: bold;
+.Navbar a {
+	cursor: pointer;
+	padding: 10px;
+	box-sizing: border-box;
+	text-decoration: none;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
-.Navbar li{
-   text-decoration: none;
-   color: white;
-   margin: auto 6px;
-   box-sizing: border-box;
+.Navbar li {
+	text-decoration: none;
+	color: white;
+	margin: auto 6px;
+	box-sizing: border-box;
 }
 
-.Navbar li a:hover{
-   background-color: white;
-   color: black;
+.Navbar li a:hover {
+	background-color: white;
+	color: black;
 }
 
-.LinkActive{
-   border-bottom: 2px solid whitesmoke;
-   background-color: rgba(68, 68, 68, 0.534);
-   text-decoration: none;
+.LinkActive {
+	border-bottom: 2px solid whitesmoke;
+	background-color: rgba(68, 68, 68, 0.534);
+	text-decoration: none;
 }
 
-.Link{
-   text-decoration: none;
-   color: white;
-   font-weight: bold;
-   padding: 11px 20px;
+.Link {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	padding: 11px 20px;
 }
 
-@media (min-width:400){
-   .Navbar{
-      width: 100%;
-   }
+@media (min-width: 300px) {
+	.Navbar {
+		width: 100%;
+	}
 }

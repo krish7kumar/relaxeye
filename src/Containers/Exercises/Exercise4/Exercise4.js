@@ -1,90 +1,118 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../common.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Timer from '../../Timer/Timer';
+import FullInstructions from '../../../Components/FullInstructions';
 
- class Exercise4 extends Component{
-   _isMounted = false;
-   state = {
-      text : '',
-      next : false,
-      start : false,
-      full : false
-   }
+const Exercise4 = React.memo((props) => {
+	const [ text, setText ] = useState(''),
+		[ next, setNext ] = useState(false),
+		[ start, setStart ] = useState(false),
+		[ full, setFull ] = useState(false),
+		[ timer, setTimer ] = useState(false),
+		[ ecount, setEcount ] = useState(0);
 
-   componentDidMount(){
-      this._isMounted = true;
-         setTimeout(()=>{
-            if(this._isMounted)
-               this.setState({text:'Relax your shoulders. Rub your hands with little friction for 15 seconds until it get warm'})
-            setTimeout(()=>{
-               if(this._isMounted)
-                  this.setState({text:'Once the hands feel warm and nice, cover the eyes placing the heels of your hands on the cheekbones resting the palm on the brow bones and letting the fingertips rest on your skull.'})
-               setTimeout(()=>{
-                  if(this._isMounted)
-                     this.setState({text:'Feel the warmth of the hands and darkness. Notice if you see any flashes of light. Let your breath be natural and smooth. When lights and the colors fade to black open your eyes into the darkness'})
-                  setTimeout(()=>{
-                     if(this._isMounted)
-                        this.setState({text:'START!', start:true, next:true}) 
-                  },7000)
-               },7000)
-            },5000)
-         }, 1000)
-      }
+	const timeOut = React.useRef(null);
+	useEffect(() => {
+		timeOut.current = setTimeout(() => {
+			setText('Relax your shoulders. Rub your hands with little friction for 15 seconds until it get warm.');
+			setEcount((prevState) => prevState + 1);
 
-   componentWillUnmount(){
-      this._isMounted = false;
-   }
+			timeOut.current = setTimeout(() => {
+				setText(
+					'Once the hands feel warm and nice, cover the eyes placing the heels of your hands on the cheekbones resting the palm on the brow bones and letting the fingertips rest on your skull.'
+				);
+				setEcount((prevState) => prevState + 1);
 
-   restartExercise =()=>{
-      this.props.history.replace('/exercises');
-   }
+				timeOut.current = setTimeout(() => {
+					setText(
+						'Feel the warmth of the hands and darkness. Notice if you see any flashes of light. Let your breath be natural and smooth. When lights and the colors fade to black open your eyes into the darkness'
+					);
+					setEcount((prevState) => prevState + 1);
 
-   finishedHandler =()=>{
-      if(this.state.next){
-         this.props.history.replace('/')
-      }else{
-         this.setState({next:true});
-      }
-   }
+					timeOut.current = setTimeout(() => {
+						setText('START!');
+						setNext(true);
+						setTimer(true);
+						setStart(true);
+					}, 7000);
+				}, 7000);
+			}, 5000);
+		}, 1000);
+		return () => {
+			clearTimeout(timeOut.current);
+		};
+	}, []);
 
-   fullInstructions = ()=>{
-      this.setState({
-         full : true
-      })
-   }
+	const prevExercise = () => {
+		props.history.goBack();
+	};
 
-    render(){
-      const buttonName = this.state.next ? 'FINISH' : 'SKIP'; 
-      const fullInstructions = (<div className='Exercise'>
-      <h3>Full Instruction</h3>
-      <ol className='Ol'>
-         <li>Relax your shoulders. Rub your hands with little friction for 15 seconds until it get warm</li>
-         <li>Once the hands feel warm and nice, cover the eyes placing the heels of your hands on the cheekbones resting the palm on the brow bones and letting the fingertips rest on your skull.</li>
-         <li>Feel the warmth of the hands and darkness. Notice if you see any flashes of light. Let your breath be natural and smooth. When lights and the colors fade to black open your eyes into the darkness</li>
-      </ol>
-      </div>
-      ); 
-      return (
-         <div className='Container'>
-            <div className='Exercise'>
-               <h1>Rub Rub</h1>
-               <p>For the last time<br/>In a stable relaxed position</p>
-               <p className='Instruction'>{this.state.text}</p>
-            </div>
-               {this.state.start?<Timer minutes='1' seconds='10'/>:null}
-               <button onClick={this.restartExercise}>RESTART</button>
-               <button onClick={this.finishedHandler}>{buttonName}</button>
-               <button disabled={!this.state.next}  onClick={this.fullInstructions} 
-               style={{
-                  marginTop :'10px'
-               }}>
-                  Full Instructions
-               </button>
-               {this.state.full ? fullInstructions : null}
-         </div>
-      );
-    }
-}
+	const restartExercise = () => {
+		if (next) {
+			props.history.replace('/exercises');
+		} else {
+			clearTimeout(timeOut.current);
+			setText('START!');
+			setNext(true);
+			setStart(true);
+		}
+	};
+
+	const fullInstructions = () => {
+		setFull((prevState) => !prevState);
+	};
+
+	const timerOn = () => {
+		setTimer((prevState) => !prevState);
+	};
+
+	const buttonName = next ? 'RESTART' : 'SKIP';
+
+	return (
+		<div className="Container">
+			<div className="Exercise">
+				<h1>Rub Rub</h1>
+				<p>In a stable relaxed position</p>
+				{!next ? (
+					<p>
+						<span>{ecount}</span>/3
+					</p>
+				) : (
+					<p>3/3</p>
+				)}
+				<p className="Instruction">{text}</p>
+			</div>
+			{timer ? (
+				<Timer minutes="1" seconds="0" />
+			) : (
+				<div
+					style={{
+						marginBottom: '16px',
+						opacity: 0.5
+					}}
+				>
+					Time Remaining: 1:00
+				</div>
+			)}
+			<button disabled={!full && !start} onClick={timerOn}>
+				{timer ? 'Reset Timer' : 'Start Timer'}
+			</button>
+			<button
+				disabled={!next}
+				onClick={fullInstructions}
+				style={{
+					margin: '10px auto'
+				}}
+			>
+				Full Instructions
+			</button>
+			<br />
+			<button onClick={prevExercise}>BACK</button>
+			<button onClick={restartExercise}>{buttonName}</button>
+			{full ? <FullInstructions number="4" /> : null}
+		</div>
+	);
+});
 
 export default withRouter(Exercise4);

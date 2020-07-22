@@ -1,98 +1,124 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../common.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Timer from '../../Timer/Timer';
+import FullInstructions from '../../../Components/FullInstructions';
 
+const Exercise3 = React.memo((props) => {
+	const [ text, setText ] = useState(''),
+		[ next, setNext ] = useState(false),
+		[ start, setStart ] = useState(false),
+		[ full, setFull ] = useState(false),
+		[ timer, setTimer ] = useState(false),
+		[ ecount, setEcount ] = useState(0);
 
- class Exercise3 extends Component{
-   _isMounted = false;
-   state = {
-      text : '',
-      next : false,
-      start : false,
-      full : false
-   }
+	const timeOut = React.useRef(null);
+	useEffect(() => {
+		timeOut.current = setTimeout(() => {
+			setText(
+				'Hold your two index fingers horizontally opposite with 2 inches gap in between also about 8 inches front of your face and eye level.'
+			);
+			setEcount((prevState) => prevState + 1);
 
-   componentDidMount(){
-      this._isMounted = true;
-         setTimeout(()=>{
-            if(this._isMounted)
-               this.setState({text:'Hold your two index fingers horizontally opposite with 2 inches gap in between also about 8 inches front of your face and eye level.'})
-            setTimeout(()=>{
-               if(this._isMounted)
-                  this.setState({text:'Look across the room, with aware of your fingers, you will see a little hotdog in between your fingers.'})
-               setTimeout(()=>{
-                  if(this._isMounted)
-                     this.setState({text:'The hotdog will disappear once you focus on it.'})
-                  setTimeout(()=>{
-                     if(this._isMounted)
-                        this.setState({text:'Repeat for 10 times, 1 breath across the room and 1 breath getting rid off hotdog.', next: true})
-                        setTimeout(()=>{
-                           if(this._isMounted)
-                              this.setState({text:'START!',next:true, start:true}) 
-                        },4000)
-                  },3000)
-               },5000)
-            },5000)
-         }, 1000)
-      }
+			timeOut.current = setTimeout(() => {
+				setText(
+					'Look across the room, with aware of your fingers, you will see a little hotdog in between your fingers.'
+				);
+				setEcount((prevState) => prevState + 1);
 
-   componentWillUnmount(){
-      this._isMounted = false;
-   }
+				timeOut.current = setTimeout(() => {
+					setText('The hotdog will disappear once you focus on it.');
+					setEcount((prevState) => prevState + 1);
 
-   nextExercise =()=>{
-      if(this.state.next){
-         this.props.history.push('/exercises/4');
-      }
-      else{
-         this.setState({next:true});
-      }
-   }
-   prevExercise = ()=>{
-      this.props.history.goBack();
-   }
+					timeOut.current = setTimeout(() => {
+						setText('Repeat for 10 times, 1 breath across the room and 1 breath getting rid off hotdog.');
+						setEcount((prevState) => prevState + 1);
 
-   fullInstructions = ()=>{
-      this.setState({
-         full : true
-      })
-   }
+						timeOut.current = setTimeout(() => {
+							setText('START!');
+							setNext(true);
+							setStart(true);
+							setTimer(true);
+						}, 4000);
+					}, 3000);
+				}, 5000);
+			}, 5000);
+		}, 1000);
+		return () => {
+			clearTimeout(timeOut.current);
+		};
+	}, []);
 
-    render(){
-      const buttonName = this.state.next ? 'NEXT' : 'SKIP';
-      const fullInstructions = (<div className='Exercise'>
-         <h3>Full Instruction</h3>
-         <ol className='Ol'>
-            <li>Hold your two index fingers horizontally opposite with 2 inches gap in between also about 8 inches front of your face and eye level.</li>
-            <li>Look across the room, with aware of your fingers, you will see a little hotdog in between your fingers.</li>
-            <li>The hotdog will disappear once you focus on it.</li>
-            <li>Repeat for 10 times, 1 breath across the room and 1 breath getting rid off hotdog.</li>
-         </ol>
-         </div>
-      ); 
-      return (
-         <div className='Container'>
-            <div className='Exercise'>
-               <h1>Hotdog</h1>
-               <p>In a stable relaxed position</p>
-               <p className='Instruction'>{this.state.text}</p>
-            </div>
-            {this.state.start?<Timer minutes='0' seconds='45'/>:null}
-            <button onClick={this.prevExercise}>BACK</button>
-            <button onClick={this.nextExercise}>{buttonName}</button>
-            <button disabled={!this.state.next}  onClick={this.fullInstructions} 
-            style={{
-               marginTop :'10px'
-            }}>
-               Full Instructions
-            </button>
-            {this.state.full ? fullInstructions : null}
-         </div>
-      );
-    }
-}
+	const nextExercise = () => {
+		if (next) {
+			props.history.push('/exercises/4');
+		} else {
+			clearTimeout(timeOut.current);
+			setText('START!');
+			setNext(true);
+			setStart(true);
+		}
+	};
 
-// In a stable relaxed postion,  move your eyes up and down , left and right, diagnally right and diagnally each for 5 breaths
+	const prevExercise = () => {
+		props.history.goBack();
+	};
+
+	const fullInstructions = () => {
+		setFull((prevState) => !prevState);
+	};
+
+	const timerOn = () => {
+		setTimer((prevState) => !prevState);
+	};
+
+	const buttonName = next ? 'NEXT' : 'SKIP';
+	return (
+		<div className="Container">
+			<div className="Exercise">
+				<h1>Hotdog</h1>
+				<p>In a stable relaxed position</p>
+				{!next ? (
+					<p>
+						<span>{ecount}</span>/4
+					</p>
+				) : (
+					<p>4/4</p>
+				)}
+				<p className="Instruction">{text}</p>
+			</div>
+			{timer ? (
+				<Timer minutes="0" seconds="45" />
+			) : (
+				<div
+					style={{
+						marginBottom: '16px',
+						opacity: 0.5
+					}}
+				>
+					Time Remaining: 0:45
+				</div>
+			)}
+
+			<button disabled={!full && !start} onClick={timerOn}>
+				{timer ? 'Reset Timer' : 'Start Timer'}
+			</button>
+			<button
+				disabled={!next}
+				onClick={fullInstructions}
+				style={{
+					margin: '10px auto'
+				}}
+			>
+				Full Instructions
+			</button>
+			<br />
+			<button onClick={prevExercise}>BACK</button>
+			<button onClick={nextExercise}>{buttonName}</button>
+
+			{full ? <FullInstructions number="3" /> : null}
+		</div>
+	);
+});
 
 export default withRouter(Exercise3);
