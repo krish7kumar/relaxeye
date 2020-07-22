@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/relaxeye/static/css/main.0ae0248f.chunk.css",
-    "main.js": "/relaxeye/static/js/main.927534c8.chunk.js",
-    "main.js.map": "/relaxeye/static/js/main.927534c8.chunk.js.map",
+    "main.css": "/relaxeye/static/css/main.5a80a310.chunk.css",
+    "main.js": "/relaxeye/static/js/main.e9c03739.chunk.js",
+    "main.js.map": "/relaxeye/static/js/main.e9c03739.chunk.js.map",
     "runtime-main.js": "/relaxeye/static/js/runtime-main.fd692d02.js",
     "runtime-main.js.map": "/relaxeye/static/js/runtime-main.fd692d02.js.map",
-    "static/js/2.54cfa2d4.chunk.js": "/relaxeye/static/js/2.54cfa2d4.chunk.js",
-    "static/js/2.54cfa2d4.chunk.js.map": "/relaxeye/static/js/2.54cfa2d4.chunk.js.map",
+    "static/js/2.01caeb6a.chunk.js": "/relaxeye/static/js/2.01caeb6a.chunk.js",
+    "static/js/2.01caeb6a.chunk.js.map": "/relaxeye/static/js/2.01caeb6a.chunk.js.map",
     "index.html": "/relaxeye/index.html",
-    "precache-manifest.d621b60417da07177c63f8a9b4f9ff85.js": "/relaxeye/precache-manifest.d621b60417da07177c63f8a9b4f9ff85.js",
+    "precache-manifest.51856ccaee1075ab96906f8f8841f3b0.js": "/relaxeye/precache-manifest.51856ccaee1075ab96906f8f8841f3b0.js",
     "service-worker.js": "/relaxeye/service-worker.js",
-    "static/css/main.0ae0248f.chunk.css.map": "/relaxeye/static/css/main.0ae0248f.chunk.css.map",
-    "static/js/2.54cfa2d4.chunk.js.LICENSE.txt": "/relaxeye/static/js/2.54cfa2d4.chunk.js.LICENSE.txt"
+    "static/css/main.5a80a310.chunk.css.map": "/relaxeye/static/css/main.5a80a310.chunk.css.map",
+    "static/js/2.01caeb6a.chunk.js.LICENSE.txt": "/relaxeye/static/js/2.01caeb6a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fd692d02.js",
-    "static/js/2.54cfa2d4.chunk.js",
-    "static/css/main.0ae0248f.chunk.css",
-    "static/js/main.927534c8.chunk.js"
+    "static/js/2.01caeb6a.chunk.js",
+    "static/css/main.5a80a310.chunk.css",
+    "static/js/main.e9c03739.chunk.js"
   ]
 }
