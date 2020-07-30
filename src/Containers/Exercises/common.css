@@ -53,7 +53,7 @@
 	text-shadow: 0.3px 3px gray;
 }
 
-p:nth-child(3) {
+.slide {
 	text-shadow: 0.5px 1px gray;
 }
 

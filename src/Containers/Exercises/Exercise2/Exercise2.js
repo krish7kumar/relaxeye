@@ -59,13 +59,15 @@ const Exercise2 = React.memo((props) => {
 			<div className="Exercise">
 				<h1>Figure 8</h1>
 				<p>In a stable relaxed position</p>
-				{!next ? (
-					<p>
-						<span>{ecount}</span>/1
-					</p>
-				) : (
-					<p>1/1</p>
-				)}
+				<div className="slide">
+					{!next ? (
+						<p>
+							<span>{ecount}</span>/1
+						</p>
+					) : (
+						<p>1/1</p>
+					)}
+				</div>
 				<p className="Instruction">{text}</p>
 			</div>
 			{timer ? (
